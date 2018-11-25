@@ -153,3 +153,6 @@ gradle-app.setting
 *.iml
 out
 gen
+
+# CodeMR
+codemr
