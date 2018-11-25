@@ -4,7 +4,7 @@ typealias World = List<List<Boolean>>
 
 fun World.asString() =
         this.joinToString("\n") {
-            it.joinToString("") { cellChar[it]!! }
+            it.joinToString(" ") { cellChar[it]!! }
         }
 
 fun World.flipAt(py: Int, px: Int) =
@@ -14,7 +14,7 @@ fun World.flipAt(py: Int, px: Int) =
             }
         }
 
-val cellChar = mapOf(true to "X", false to "-")
+val cellChar = mapOf(true to "X", false to "·")
 
 fun neighbours(world: World, y: Int, x: Int) =
         (y - 1..y + 1).map { j -> Pair(j, (x - 1..x + 1).filter { j != y || it != x }) }
