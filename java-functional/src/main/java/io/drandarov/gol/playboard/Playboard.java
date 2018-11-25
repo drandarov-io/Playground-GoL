@@ -10,8 +10,8 @@ import java.util.stream.IntStream;
 
 public class Playboard {
 
-    private Boolean[][] board;
-    private List<RuleSet> ruleSets;
+    private final Boolean[][] board;
+    private final List<RuleSet> ruleSets;
 
     public Playboard(int x, int y) {
         this.board = new Boolean[y][x];
@@ -29,7 +29,6 @@ public class Playboard {
 
     public Playboard(Playboard playboard) {
         this(playboard.board[0].length, playboard.board.length, playboard.ruleSets.toArray(new RuleSet[0]));
-
         IntStream.range(0, board.length)
                 .forEach(i -> System.arraycopy(playboard.board[i], 0, board[i], 0, board[0].length));
     }
