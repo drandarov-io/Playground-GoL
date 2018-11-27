@@ -1,3 +1,3 @@
 rootProject.name = "gol-collection"
 
-include("java-functional", "kotlin-functional")
+include("java-functional", "java-functional-3d", "kotlin-functional")
