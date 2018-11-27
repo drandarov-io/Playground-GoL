@@ -47,7 +47,7 @@ public class Playboard {
 
     public Playboard set(int x, int y, boolean isAlive) {
         Playboard newPlayBoard = new Playboard(this);
-        newPlayBoard.board[x][y] = isAlive;
+        newPlayBoard.board[y][x] = isAlive;
         return newPlayBoard;
     }
 
@@ -56,13 +56,13 @@ public class Playboard {
     }
 
     private boolean applyRuleSets(int x, int y) {
-        return this.board[x][y] = ruleSets.stream().allMatch(ruleSet -> ruleSet.isCellAlive(getNeighborCount(x, y)));
+        return ruleSets.stream().allMatch(ruleSet -> ruleSet.isCellAlive(board[x][y], getNeighborCount(x, y)));
     }
 
     private int getNeighborCount(int x, int y) {
         int count = (int) IntStream.rangeClosed(x - 1, x + 1)
                 .flatMap(i -> IntStream.rangeClosed(y - 1, y + 1)
-                        .filter(j -> x > 0 && y > 0 && x < board.length - 1 && y < board[0].length - 1 && board[i][j]))
+                        .filter(j -> i >= 0 && j >= 0 && i < board.length && j < board[0].length && board[i][j]))
                 .count();
 
         return (board[x][y] ? --count : count);
