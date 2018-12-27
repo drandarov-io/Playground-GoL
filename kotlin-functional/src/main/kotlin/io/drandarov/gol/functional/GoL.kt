@@ -22,7 +22,7 @@ fun World.flipAt(x: Int, y: Int): World =
             row.mapIndexed { i, cell ->
             if (j == y && i == x) !cell else cell } }
 
-public fun World.step() =
+public fun World.step(): World =
         this.mapIndexed { j, row ->
             row.mapIndexed { i, cell ->
             defaultRule(cell, neighbourCount(i, j)) } }
