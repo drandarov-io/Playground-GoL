@@ -9,11 +9,11 @@ class GoLDemo : PApplet() {
         var world: World = createWorld(10, 15, 3)
         val gap = 2
         val size = 20
+        val art = GoLDemo()
 
         fun run() {
-            val art = GoLDemo()
             println("width ${world.width} + height ${world.height} + depth ${world.depth}")
-            art.setSize(world.width * (size + gap), world.height * (size + gap))
+            art.setSize(world.width * (size + gap) * world.depth + 30, world.height * (size + gap))
             art.runSketch()
         }
     }
@@ -57,6 +57,19 @@ class GoLDemo : PApplet() {
             row.mapIndexed { x, cell ->
                 fill (if (cell) 50f else 200f)
                 rect(x * (size + gap).toFloat(), y * (size + gap).toFloat(), size.toFloat(), size.toFloat())
+            } }
+
+        world[1].mapIndexed { y, row ->
+            row.mapIndexed { x, cell ->
+                fill (if (cell) 50f else 200f)
+                rect(10 + x * (size + gap).toFloat() + (art.width - 30) / 3 * 1, y * (size + gap).toFloat(), size.toFloat(), size.toFloat())
+            } }
+
+
+        world[2].mapIndexed { y, row ->
+            row.mapIndexed { x, cell ->
+                fill (if (cell) 50f else 200f)
+                rect(20 + x * (size + gap).toFloat() + (art.width - 30) / 3 * 2, y * (size + gap).toFloat(), size.toFloat(), size.toFloat())
             } }
 
 //        world.mapIndexed { z, row ->
