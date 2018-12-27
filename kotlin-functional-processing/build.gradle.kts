@@ -8,7 +8,6 @@ plugins {
 
 dependencies {
     compile(kotlin("stdlib-jdk8"))
-    compile("org.processing:core:3.3.7")
 
     testCompile("org.junit.jupiter:junit-jupiter-api:${rootProject.extra["jUnit5Version"]}")
     testCompile("org.junit.jupiter:junit-jupiter-params:${rootProject.extra["jUnit5Version"]}")
