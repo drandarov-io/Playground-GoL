@@ -1,31 +1,38 @@
 package io.drandarov.gol.functional
 
-typealias World = List<List<Boolean>>
+typealias World = List<List<List<Boolean>>>
 
 val cellChar = mapOf(true to "O", false to "·")
 
-public fun createWorld(width: Int, height: Int): World = (0 until width * height).map { false }.chunked(width)
-public val World.width get() = this[0].size
-public val World.height get() = this.size
+// TODO
+public fun createWorld(width: Int, height: Int, depth: Int): World = (0 until width * height * depth).map { false }.chunked(width).chunked(height)
+public val World.width get() = this[0][0].size
+public val World.height get() = this[0].size
+public val World.depth get() = this.size
 
 fun defaultRule(isAlive: Boolean, neighborCount: Int) = neighborCount in 2..3 && (isAlive || neighborCount != 2)
 
-fun World.isAlive(x: Int, y: Int) = x in 0 until width && y in 0 until height && this[y][x]
+fun World.isAlive(x: Int, y: Int, z: Int) = x in 0 until width && y in 0 until height && z in 0 until depth && this[z][y][x]
 
-fun World.isAliveNeighbor(x: Int, y: Int, i: Int, j: Int) = isAlive(i, j) && !(x == i && y == j)
+fun World.isAliveNeighbor(x: Int, y: Int, z: Int, i: Int, j: Int, k: Int) = isAlive(i, j, k) && !(x == i && y == j && z == k)
 
-fun World.neighbourCount(x: Int, y: Int) = (x - 1..x + 1)
-        .sumBy { i -> (i to (y - 1..y + 1)).second.filter { j -> isAliveNeighbor(x, y, i, j)  }.count() }
+fun World.neighbourCount(x: Int, y: Int, z: Int) = (x - 1..x + 1)
+        .sumBy { i -> (i to (y - 1..y + 1)).second.sumBy { j -> (j to (z - 1..z + 1)).second.filter { k -> isAliveNeighbor(x, y, z, i, j, k)  }.count() } }
 
-fun World.flipAt(x: Int, y: Int): World =
-        this.mapIndexed { j, row ->
-            row.mapIndexed { i, cell ->
-            if (j == y && i == x) !cell else cell } }
+fun World.flipAt(x: Int, y: Int, z: Int): World =
+        this.mapIndexed { k, row ->
+            row.mapIndexed { j, col ->
+                col.mapIndexed { i, cell ->
+                    if (k == z && j == y && i == x) !cell else cell } } }
 
 public fun World.step(): World =
-        this.mapIndexed { j, row ->
-            row.mapIndexed { i, cell ->
-            defaultRule(cell, neighbourCount(i, j)) } }
+        this.mapIndexed { k, row ->
+            row.mapIndexed { j, col ->
+                col.mapIndexed { i, cell ->
+            defaultRule(cell, neighbourCount(i, j, k)) } } }
 
 public fun World.asString() =
-        this.joinToString("\n") { bools -> bools.joinToString(" ") { cellChar[it]!! } }
+        this[0].joinToString("\n") { bools -> bools.joinToString(" ") { cellChar[it]!! } } +
+            "\n" + this[1].joinToString("\n") { bools -> bools.joinToString(" ") { cellChar[it]!! } } +
+            "\n" + this[2].joinToString("\n") { bools -> bools.joinToString(" ") { cellChar[it]!! } }
+
