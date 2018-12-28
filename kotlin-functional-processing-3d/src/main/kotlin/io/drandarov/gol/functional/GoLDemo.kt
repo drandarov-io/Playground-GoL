@@ -13,7 +13,7 @@ class GoLDemo : PApplet() {
 
         fun run() {
             println("width ${world.width} + height ${world.height} + depth ${world.depth}")
-            art.setSize(world.width * (size + gap) * world.depth + 30, world.height * (size + gap))
+            art.setSize(world.width * (size + gap) * world.depth, world.height * (size + gap))
             art.runSketch()
         }
     }
@@ -28,8 +28,6 @@ class GoLDemo : PApplet() {
                 .flipAt(0, 2, 0)
                 .flipAt(1, 2, 0)
                 .flipAt(2, 2, 0)
-
-        println(world.asString())
 
         drawGoL()
     }
@@ -62,22 +60,15 @@ class GoLDemo : PApplet() {
         world[1].mapIndexed { y, row ->
             row.mapIndexed { x, cell ->
                 fill (if (cell) 50f else 200f)
-                rect(10 + x * (size + gap).toFloat() + (art.width - 30) / 3 * 1, y * (size + gap).toFloat(), size.toFloat(), size.toFloat())
+                rect(10 + x * (size + gap).toFloat() + (art.width) / 3 * 1, y * (size + gap).toFloat(), size.toFloat(), size.toFloat())
             } }
 
 
         world[2].mapIndexed { y, row ->
             row.mapIndexed { x, cell ->
                 fill (if (cell) 50f else 200f)
-                rect(20 + x * (size + gap).toFloat() + (art.width - 30) / 3 * 2, y * (size + gap).toFloat(), size.toFloat(), size.toFloat())
+                rect(20 + x * (size + gap).toFloat() + (art.width) / 3 * 2, y * (size + gap).toFloat(), size.toFloat(), size.toFloat())
             } }
-
-//        world.mapIndexed { z, row ->
-//            row.mapIndexed { y, col ->
-//                col.mapIndexed { x, cell ->
-//                fill (if (cell) 50f else 200f)
-//                rect(x * (size + gap).toFloat(), y * (size + gap).toFloat(), size.toFloat(), size.toFloat())
-//            } } }
     }
 }
 

@@ -10,7 +10,7 @@ public val World.width get() = this[0][0].size
 public val World.height get() = this[0].size
 public val World.depth get() = this.size
 
-fun defaultRule(isAlive: Boolean, neighborCount: Int) = neighborCount in 2..3 && (isAlive || neighborCount != 2)
+fun defaultRule(isAlive: Boolean, neighborCount: Int) = neighborCount in 4..6 && (neighborCount != 6 || isAlive)
 
 fun World.isAlive(x: Int, y: Int, z: Int) = x in 0 until width && y in 0 until height && z in 0 until depth && this[z][y][x]
 
@@ -30,9 +30,4 @@ public fun World.step(): World =
             row.mapIndexed { j, col ->
                 col.mapIndexed { i, cell ->
             defaultRule(cell, neighbourCount(i, j, k)) } } }
-
-public fun World.asString() =
-        this[0].joinToString("\n") { bools -> bools.joinToString(" ") { cellChar[it]!! } } +
-            "\n" + this[1].joinToString("\n") { bools -> bools.joinToString(" ") { cellChar[it]!! } } +
-            "\n" + this[2].joinToString("\n") { bools -> bools.joinToString(" ") { cellChar[it]!! } }
 
