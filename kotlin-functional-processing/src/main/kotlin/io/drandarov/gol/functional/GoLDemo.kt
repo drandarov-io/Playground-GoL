@@ -50,8 +50,8 @@ class GoLDemo : PApplet() {
     private fun drawGoL() {
         background(240f)
 
-        world.mapIndexed { y, row ->
-            row.mapIndexed { x, cell ->
+        world.forEachIndexed { y, row ->
+            row.forEachIndexed { x, cell ->
                 fill (if (cell) 50f else 200f)
                 rect(x * (size + gap).toFloat(), y * (size + gap).toFloat(), size.toFloat(), size.toFloat())
             } }

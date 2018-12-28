@@ -4,7 +4,6 @@ typealias World = List<List<List<Boolean>>>
 
 val cellChar = mapOf(true to "O", false to "·")
 
-// TODO
 public fun createWorld(width: Int, height: Int, depth: Int): World = (0 until width * height * depth).map { false }.chunked(width).chunked(height)
 public val World.width get() = this[0][0].size
 public val World.height get() = this[0].size
@@ -29,5 +28,5 @@ public fun World.step(): World =
         this.mapIndexed { k, row ->
             row.mapIndexed { j, col ->
                 col.mapIndexed { i, cell ->
-            defaultRule(cell, neighbourCount(i, j, k)) } } }
+                    defaultRule(cell, neighbourCount(i, j, k)) } } }
 

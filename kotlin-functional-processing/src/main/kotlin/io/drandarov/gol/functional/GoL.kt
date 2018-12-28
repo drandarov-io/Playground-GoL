@@ -20,12 +20,12 @@ fun World.neighbourCount(x: Int, y: Int) = (x - 1..x + 1)
 fun World.flipAt(x: Int, y: Int): World =
         this.mapIndexed { j, row ->
             row.mapIndexed { i, cell ->
-            if (j == y && i == x) !cell else cell } }
+                if (j == y && i == x) !cell else cell } }
 
 public fun World.step(): World =
         this.mapIndexed { j, row ->
             row.mapIndexed { i, cell ->
-            defaultRule(cell, neighbourCount(i, j)) } }
+                defaultRule(cell, neighbourCount(i, j)) } }
 
 public fun World.asString() =
         this.joinToString("\n") { bools -> bools.joinToString(" ") { cellChar[it]!! } }
