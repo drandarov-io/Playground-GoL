@@ -7,7 +7,6 @@ class GoLDemo : PApplet() {
 
     // TODO Implement new ruleset -> either all < 3 distance || that fancy Dewdney one
     // TODO Improve camera
-    // TODO Fix maximized mouse click detection
 
     companion object Factory {
         var world: World = createWorld(10, 15, 4)
@@ -71,9 +70,9 @@ class GoLDemo : PApplet() {
 
     override fun mouseClicked() {
         if (mouseButton == LEFT) {
-            val z = ((mouseX + sliceGap) / sliceWidth).toInt()
+            val z = ((mouseX + sliceGap - (width - sliceWidthSum) / 2) / sliceWidth).toInt()
             val y = ((mouseY - (height - sliceHeightSum)) / (size + gap)).toInt()
-            val x = ((mouseX - (sliceWidth * (z))) / (size + gap)).toInt()
+            val x = ((mouseX - (width - sliceWidthSum) / 2 - (sliceWidth * (z))) / (size + gap)).toInt()
 
             println("clicked x=$x, y=$y, z=$z")
             world = world.flipAt(x, y, z)
