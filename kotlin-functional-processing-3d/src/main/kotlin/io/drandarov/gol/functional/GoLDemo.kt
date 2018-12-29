@@ -5,8 +5,9 @@ import processing.core.PApplet
 
 class GoLDemo : PApplet() {
 
-    // TODO new ruleset -> either all < 3 distance || that fancy Dewdney one
-    // TODO improve camera
+    // TODO Implement new ruleset -> either all < 3 distance || that fancy Dewdney one
+    // TODO Improve camera
+    // TODO Fix maximized mouse click detection and object position
 
     companion object Factory {
         var world: World = createWorld(10, 15, 4)
@@ -81,6 +82,7 @@ class GoLDemo : PApplet() {
 
     private fun drawGoL() {
         background(240f)
+
 
         // View
         fill(240f)
