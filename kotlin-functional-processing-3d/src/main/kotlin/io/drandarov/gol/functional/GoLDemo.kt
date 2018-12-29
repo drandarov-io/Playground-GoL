@@ -7,7 +7,7 @@ class GoLDemo : PApplet() {
 
     // TODO Implement new ruleset -> either all < 3 distance || that fancy Dewdney one
     // TODO Improve camera
-    // TODO Fix maximized mouse click detection and object position
+    // TODO Fix maximized mouse click detection
 
     companion object Factory {
         var world: World = createWorld(10, 15, 4)
@@ -94,11 +94,13 @@ class GoLDemo : PApplet() {
         val sliceWidth3D = (world.width - 1) * (size3D + gap3D)
         val sliceHeight3D = (world.height - 1) * (size3D + gap3D)
         val sliceDepth3D = (world.depth - 1) * (size3D + gap3D)
-        line(0f, viewSize / 2f, width.toFloat(), viewSize / 2f)
+        val viewHeight = height - sliceHeightSum
+
+        line(0f, viewHeight / 2f, width.toFloat(), viewHeight / 2f)
         pushMatrix()
         translate(
                 width / 2f,
-                (viewSize) / 2f + 50f,
+                (viewHeight) / 2f + 50f,
                 (world.depth - 1) * (size3D + gap3D))
         rotateY(rotation)
 
@@ -131,7 +133,6 @@ class GoLDemo : PApplet() {
                 row.forEachIndexed { x, cell ->
                     fill (if (cell) 40f else 230f)
                     stroke(120f)
-                    // TODO Fix x axis
                     rect(
                             x * (size + gap) + z * sliceGap + z * (sliceWidth - sliceGap) - sliceWidthSum / 2f + gap / 2f,
                             y * (size + gap) + (height - sliceHeightSum),
