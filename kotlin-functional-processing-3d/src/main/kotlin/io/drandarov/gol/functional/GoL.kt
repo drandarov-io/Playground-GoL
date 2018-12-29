@@ -16,7 +16,9 @@ fun World.isAlive(x: Int, y: Int, z: Int) = x in 0 until width && y in 0 until h
 fun World.isAliveNeighbor(x: Int, y: Int, z: Int, i: Int, j: Int, k: Int) = isAlive(i, j, k) && !(x == i && y == j && z == k)
 
 fun World.neighbourCount(x: Int, y: Int, z: Int) = (x - 1..x + 1)
-        .sumBy { i -> (i to (y - 1..y + 1)).second.sumBy { j -> (j to (z - 1..z + 1)).second.filter { k -> isAliveNeighbor(x, y, z, i, j, k)  }.count() } }
+        .sumBy { i -> (i to (y - 1..y + 1)).second
+                .sumBy { j -> (j to (z - 1..z + 1)).second
+                        .filter { k -> isAliveNeighbor(x, y, z, i, j, k)  }.count() } }
 
 fun World.flipAt(x: Int, y: Int, z: Int): World =
         this.mapIndexed { k, row ->
