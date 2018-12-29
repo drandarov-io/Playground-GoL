@@ -6,9 +6,10 @@ import processing.core.PApplet
 class GoLDemo : PApplet() {
 
     // TODO new ruleset -> either all < 3 distance || that fancy Dewdney one
+    // TODO improve camera
 
     companion object Factory {
-        var world: World = createWorld(10, 15, 6)
+        var world: World = createWorld(10, 15, 4)
 
         val viewSize = 750f
         val gap = 2f
@@ -32,7 +33,6 @@ class GoLDemo : PApplet() {
 
     override fun setup() {
         frameRate(24f)
-        // TODO camera(0f, 100f, 0f, width/2f, 1000f, 0f, 0f, 1f, 0f)
 
         surface.setResizable(true)
 
@@ -69,11 +69,10 @@ class GoLDemo : PApplet() {
     }
 
     override fun mouseClicked() {
-        // TODO Fix mouse detection on higher depth
         if (mouseButton == LEFT) {
-            val z = (mouseX / ((width + /*world.width * gap * world.depth +*/ (sliceGap * (world.depth - 1))) / world.depth)).toInt()
+            val z = ((mouseX + sliceGap) / sliceWidth).toInt()
             val y = ((mouseY - (height - sliceHeightSum)) / (size + gap)).toInt()
-            val x = ((mouseX - ((width + sliceGap * (z - 1)) / world.depth * z)) / (size + gap)).toInt()
+            val x = ((mouseX - (sliceWidth * (z))) / (size + gap)).toInt()
 
             println("clicked x=$x, y=$y, z=$z")
             world = world.flipAt(x, y, z)
