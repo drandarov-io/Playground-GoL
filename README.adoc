@@ -8,7 +8,7 @@ Dmitrij Drandarov <https://github.com/dmitrij-drandarov>
 
 == Demo
 === Kotlin-Functional-Processing-3D
-image:gol_3D.png[3D Visualization (above), seperate layers (below)]
+image:gol_3D.png[3D Visualization (above) seperate layers (below), 75%, 75%]
 
 == Variants
 
