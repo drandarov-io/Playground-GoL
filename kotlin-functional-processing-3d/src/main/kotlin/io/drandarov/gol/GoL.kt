@@ -1,4 +1,4 @@
-package io.drandarov.gol.functional
+package io.drandarov.gol
 
 typealias World = List<List<List<Boolean>>>
 

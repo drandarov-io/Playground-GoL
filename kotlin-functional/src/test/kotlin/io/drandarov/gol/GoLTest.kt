@@ -1,4 +1,4 @@
-package io.drandarov.gol.functional
+package io.drandarov.gol
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeAll

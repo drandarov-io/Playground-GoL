@@ -1,4 +1,4 @@
-package io.drandarov.gol.functional
+package io.drandarov.gol
 
 fun main(args: Array<String>) {
     var world: World = createWorld(10, 15)

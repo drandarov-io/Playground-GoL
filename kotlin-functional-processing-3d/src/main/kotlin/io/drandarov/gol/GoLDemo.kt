@@ -1,4 +1,4 @@
-package io.drandarov.gol.functional
+package io.drandarov.gol
 
 import processing.core.PApplet
 
@@ -18,6 +18,7 @@ class GoLDemo : PApplet() {
         val sliceWidth = world.width * (size + gap) + sliceGap
         var sliceWidthSum = sliceWidth * world.depth - sliceGap
         val sliceHeightSum = world.height * (size + gap)
+        var showCoords = true
 
         var size3D = 20f
         var gap3D = 0f
@@ -66,6 +67,8 @@ class GoLDemo : PApplet() {
             gap3D += 2f
         if (key == 'q')
             gap3D = max(0f, gap3D - 2f)
+        if (key == 'c')
+            showCoords = !showCoords
     }
 
     override fun mouseClicked() {
@@ -103,10 +106,13 @@ class GoLDemo : PApplet() {
                 (world.depth - 1) * (size3D + gap3D))
         rotateY(rotation)
 
-        stroke(200f, 0f, 0f)
-        line(-200f, 0f, 0f, 200f, 0f, 0f)
-        line(0f, -200f, 0f, 0f, 200f, 0f)
-        line(0f, 0f, -200f, 0f, 0f, 200f)
+        if (showCoords) {
+            val l = 10f * size3D
+            stroke(l, 0f, 0f)
+            line(-l, 0f, 0f, l, 0f, 0f)
+            line(0f, -l, 0f, 0f, l, 0f)
+            line(0f, 0f, -l, 0f, 0f, l)
+        }
 
         world.forEachIndexed { z, slice ->
             slice.forEachIndexed { y, row ->

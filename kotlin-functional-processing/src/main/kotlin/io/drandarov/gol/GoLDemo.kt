@@ -1,4 +1,4 @@
-package io.drandarov.gol.functional
+package io.drandarov.gol
 
 import processing.core.PApplet
 

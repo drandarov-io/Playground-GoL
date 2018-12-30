@@ -1,0 +1,33 @@
+= Playground-Game-of-Life
+Dmitrij Drandarov <https://github.com/dmitrij-drandarov>
+:imagesdir: img
+
+== Authors
+
+* Dmitrij Drandarov | link:https://github.com/dmitrij-drandarov[image:github.png[20px, 20px]] | link:https://twitter.com/drandarov_io[image:twitter.png[20px, 20px]] | link:https://www.xing.com/profile/Dmitrij_Drandarov[image:xing.png[20px, 20px]] | link:https://www.linkedin.com/in/dmitrij-drandarov/[image:linkedin.png[20px, 20px]]
+
+== Demo
+=== Kotlin-Functional-Processing-3D
+image:gol_3D.png[3D Visualization (above), seperate layers (below)]
+
+== Variants
+
+=== link:/java-functional/src/main/java/io/drandarov/gol[Java-Functional]
+
+=== link:/java-functional-3d/src/main/java/io/drandarov/gol[Java-Functional-3D (no GUI)]
+
+=== link:/kotlin-converted-from-java-functional/src/main/java/io/drandarov/gol[Kotlin converted-from-Java-Functional]
+
+=== link:/kotlin-functional/src/main/java/io/drandarov/gol[Kotlin-Functional]
+
+=== link:/kotlin-functional-processing/src/main/java/io/drandarov/gol[Kotlin-Functional-Processing (GUI)]
+
+- Right Arrow: Step
+
+=== link:/kotlin-functional-processing-3d/src/main/java/io/drandarov/gol[Kotlin-Functional-Processing-3D (GUI)]
+
+- Right Arrow: Step
+- W, S: Zoom
+- A, D: Rotate
+- Q, E: Change cube gaps
+- C : Show/Hide coordinate lines
